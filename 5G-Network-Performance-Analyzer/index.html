@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A 5G-inspired network performance analyzer dashboard for simulated latency, packet loss and throughput." />
+  <title>5G Network Performance Analyzer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#"><span class="brand-mark">5G</span><span>Net<span class="brand-light">Pulse</span></span></a>
+      <p class="nav-label">WORKSPACE</p>
+      <a class="nav-link active" href="#overview"><span>▦</span> Overview</a>
+      <a class="nav-link" href="#analytics"><span>⌁</span> Analytics</a>
+      <a class="nav-link" href="#traffic"><span>⇄</span> Traffic scenarios</a>
+      <div class="sidebar-bottom">
+        <div class="status-dot"></div>
+        <div><strong>Simulation mode</strong><small>Local demo environment</small></div>
+      </div>
+    </aside>
+
+    <main class="main-content" id="overview">
+      <header class="topbar">
+        <div><p class="eyebrow">NETWORK INTELLIGENCE / DASHBOARD</p><h1>Network overview</h1></div>
+        <div class="topbar-right"><span class="live-pill"><i></i> SIMULATION ACTIVE</span><span class="avatar">AA</span></div>
+      </header>
+
+      <section class="intro-row">
+        <div><h2>Performance at a glance</h2><p>Monitor key network metrics across simulated traffic conditions.</p></div>
+        <label class="scenario-select">Traffic load
+          <select id="trafficLevel" aria-label="Select traffic load">
+            <option value="low">Low traffic</option>
+            <option value="medium" selected>Medium traffic</option>
+            <option value="high">High traffic</option>
+          </select>
+        </label>
+      </section>
+
+      <section class="metrics-grid" aria-label="Network metrics">
+        <article class="metric-card"><div class="metric-head"><span>Average latency</span><span class="metric-icon purple">◷</span></div><div class="metric-value"><strong id="latency">18.4</strong><small>ms</small></div><p class="metric-foot"><span class="good" id="latencyState">↓ 8.2%</span> vs. previous sample</p></article>
+        <article class="metric-card"><div class="metric-head"><span>Packet loss</span><span class="metric-icon orange">⌁</span></div><div class="metric-value"><strong id="packetLoss">0.4</strong><small>%</small></div><p class="metric-foot"><span class="good" id="lossState">↓ 0.2%</span> vs. previous sample</p></article>
+        <article class="metric-card"><div class="metric-head"><span>Throughput</span><span class="metric-icon blue">⇅</span></div><div class="metric-value"><strong id="throughput">842</strong><small>Mbps</small></div><p class="metric-foot"><span class="good" id="throughputState">↑ 12.5%</span> vs. previous sample</p></article>
+        <article class="metric-card"><div class="metric-head"><span>Network health</span><span class="metric-icon green">♡</span></div><div class="metric-value"><strong id="health">96</strong><small>/ 100</small></div><p class="metric-foot"><span class="good" id="healthState">Excellent</span> simulated score</p></article>
+      </section>
+
+      <section class="content-grid" id="analytics">
+        <article class="panel chart-panel">
+          <div class="panel-heading"><div><h3>Network performance</h3><p>Metric trends over the latest 12 intervals</p></div><span class="chart-legend"><i></i> Throughput</span></div>
+          <div class="chart-wrap"><canvas id="performanceChart" aria-label="Network throughput chart"></canvas></div>
+        </article>
+        <article class="panel health-panel">
+          <div class="panel-heading"><div><h3>Connection health</h3><p>Current simulated status</p></div></div>
+          <div class="health-score"><div class="score-ring"><strong id="ringScore">96</strong><small>HEALTH</small></div></div>
+          <div class="health-details"><div><span><i class="legend-dot green-dot"></i> Latency</span><b id="latencyHealth">Excellent</b></div><div><span><i class="legend-dot blue-dot"></i> Packet delivery</span><b id="deliveryHealth">Stable</b></div><div><span><i class="legend-dot purple-dot"></i> Throughput</span><b id="throughputHealth">Optimal</b></div></div>
+        </article>
+      </section>
+
+      <section class="bottom-grid" id="traffic">
+        <article class="panel insight-panel"><div class="panel-heading"><div><h3>Performance insights</h3><p>Automatic observations from this simulation</p></div></div><div class="insight-box"><span class="insight-symbol">✦</span><div><strong id="insightTitle">Network is performing well</strong><p id="insightText">Current traffic load is being handled efficiently with low latency and minimal packet loss.</p></div></div></article>
+        <article class="panel scenario-panel"><div class="panel-heading"><div><h3>Traffic comparison</h3><p>Illustrative scenario values</p></div></div><div class="table-wrap"><table><thead><tr><th>Scenario</th><th>Latency</th><th>Loss</th><th>Speed</th></tr></thead><tbody><tr><td>Low</td><td>8 ms</td><td>0.1%</td><td>950 Mbps</td></tr><tr class="selected-row"><td>Medium</td><td>18 ms</td><td>0.4%</td><td>842 Mbps</td></tr><tr><td>High</td><td>42 ms</td><td>1.8%</td><td>610 Mbps</td></tr></tbody></table></div></article>
+      </section>
+      <footer>5G Network Performance Analyzer <span>Educational simulation · Not a live 5G measurement system</span></footer>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
