@@ -1,0 +1,29 @@
+# Operating system
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs and temporary files
+*.log
+*.tmp
+.cache/
+
+# Python (for a future backend)
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# C/C++ build outputs (for a future simulator)
+build/
+cmake-build-*/
+*.o
+*.obj
+*.exe
+*.out
