@@ -1,63 +1,157 @@
 # 5G Network Performance Analyzer
 
-A responsive dashboard that demonstrates how network performance metrics can be monitored under different simulated traffic conditions. The interface visualizes latency, packet loss, throughput, and an indicative network-health score.
+A responsive, browser-based dashboard for exploring how network performance indicators can change under different simulated traffic loads. The project focuses on latency, packet loss, throughput, and an illustrative network-health score.
 
-> **Important:** This version is an educational, frontend-only simulation. It does not connect to a live 5G network, capture real packets, or run a C++/Python network simulator yet.
+> **Project status:** Frontend prototype / educational simulation. The current version uses predefined demonstration values in JavaScript. It does not connect to a 5G modem, mobile network, packet-capture interface, or live telemetry source. It is not a validated 5G benchmarking tool.
+
+## At a glance
+
+- **Project:** 5G Network Performance Analyzer (NetPulse dashboard)
+- **Author:** Adarsh Arya
+- **Interface:** HTML5, CSS3, vanilla JavaScript
+- **Charting:** Chart.js (loaded from a CDN)
+- **Runtime:** Modern web browser
+- **Build step:** Not required
 
 ## Features
 
-- Interactive low, medium, and high traffic scenarios
-- Metric cards for latency, packet loss, throughput, and network health
-- Throughput trend chart powered by Chart.js
-- Connection-health indicators and automatically updated insights
-- Responsive dark dashboard layout
+- Switch between low, medium, and high simulated traffic scenarios.
+- View latency (ms), packet loss (%), throughput (Mbps), and a sample health score.
+- Explore a throughput trend chart.
+- Review connection indicators and automatically generated explanatory insights.
+- Use the responsive dashboard on desktop, tablet, and mobile screens.
 
 ## Technology stack
 
-- HTML5
-- CSS3
-- Vanilla JavaScript
-- Chart.js
+| Technology | Purpose |
+| --- | --- |
+| HTML5 | Dashboard structure and semantic content |
+| CSS3 | Responsive layout, theme, cards, and visual styling |
+| JavaScript (ES6+) | Scenario data, DOM updates, and chart interaction |
+| Chart.js | Throughput line chart |
+| Git / GitHub | Version control and source hosting |
 
-## Run locally
+## Repository structure
 
-1. Clone the repository:
-   `git clone https://github.com/Adarsharya88/Aadarsh-Arya-.git`
-2. Open the project folder:
-   `cd Aadarsh-Arya-/5G-Network-Performance-Analyzer`
-3. Open `index.html` in your browser, or use the VS Code Live Server extension.
-
-No build step is required. Chart.js is loaded from a CDN, so an internet connection is needed for the chart library.
-
-## Project structure
-
-```
+```text
 5G-Network-Performance-Analyzer/
 ├── index.html
 ├── style.css
 ├── script.js
-└── README.md
+├── README.md
+├── CONTRIBUTING.md
+├── CHANGELOG.md
+├── .gitignore
+└── docs/
+    ├── ARCHITECTURE.md
+    ├── METRICS-AND-METHODOLOGY.md
+    ├── TESTING.md
+    └── FUTURE-API-DESIGN.md
 ```
 
-## Planned improvements
+## Run locally
 
-- Build a C++ traffic simulator using TCP/IP socket programming
-- Export simulation measurements to CSV or JSON
-- Add a Python backend to process and analyze measurement data
-- Connect the dashboard to real simulator output instead of hard-coded demo values
-- Add configurable packet size, traffic rate, and test duration
+### Requirements
 
-## Metrics
+- A current browser such as Chrome, Firefox, Edge, or Safari.
+- Internet access when loading Chart.js and Google Fonts from their CDNs.
 
-| Metric | Meaning |
-| --- | --- |
-| Latency | Time taken for data to travel between endpoints |
-| Packet loss | Percentage of transmitted packets that do not arrive |
-| Throughput | Amount of data delivered per unit of time |
-| Network health | An illustrative score derived from the simulated metrics |
+### Steps
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/Adarsharya88/Aadarsh-Arya-.git
+   ```
+
+2. Open the project directory:
+
+   ```bash
+   cd Aadarsh-Arya-/5G-Network-Performance-Analyzer
+   ```
+
+3. Open **index.html** in your browser, or open the repository in VS Code and use the Live Server extension.
+
+There is no npm install, compilation, or backend startup command at this stage.
+
+## How to use
+
+1. Open the dashboard.
+2. Find the **Traffic load** selector.
+3. Choose **Low traffic**, **Medium traffic**, or **High traffic**.
+4. Observe the updated metric cards, health score, chart, and insight.
+5. Resize the browser to check the responsive layout.
+
+## Metrics explained
+
+| Metric | Unit | Meaning |
+| --- | --- | --- |
+| Latency | milliseconds (ms) | Time taken for data to travel between defined endpoints |
+| Packet loss | percent (%) | Percentage of transmitted packets that fail to reach the destination |
+| Throughput | megabits per second (Mbps) | Rate of successfully delivered data |
+| Health score | 0–100 | A project-specific illustrative score, not an industry-standard 5G KPI |
+
+The values currently displayed are example inputs selected to make scenario comparison understandable. They are not measured results. See [Metrics and methodology](docs/METRICS-AND-METHODOLOGY.md).
+
+## Architecture
+
+The current application is a static frontend:
+
+1. **index.html** defines the dashboard sections and metric elements.
+2. **style.css** controls layout, responsive behavior, colors, and component styling.
+3. **script.js** stores scenario values, listens for selector changes, updates the DOM, and refreshes the Chart.js chart.
+4. **Chart.js** renders the throughput trend using data generated by the frontend.
+
+More detail is available in [Architecture](docs/ARCHITECTURE.md).
+
+## Testing checklist
+
+- [ ] Page opens without JavaScript errors.
+- [ ] Low, medium, and high traffic options all update the metrics.
+- [ ] The chart updates when the traffic option changes.
+- [ ] The health ring matches the displayed health score.
+- [ ] Layout remains usable at mobile, tablet, and desktop widths.
+- [ ] Text and controls remain readable and keyboard accessible.
+
+See [Testing guide](docs/TESTING.md) for manual test cases.
+
+## Limitations and accuracy
+
+- Scenario data is predefined in the frontend.
+- No live 5G network, modem, SIM, gNodeB, or core-network connection is implemented.
+- No packets are captured or transmitted by this application.
+- Latency, loss, and throughput are not measured by a C++ or Python service.
+- The health score is illustrative and is not a standardized KPI.
+- Chart.js and Google Fonts are currently loaded from external CDNs.
+
+## Roadmap
+
+The following are planned ideas, not completed features:
+
+- [ ] Add a C++ traffic-generation / measurement component using TCP/IP sockets.
+- [ ] Define repeatable test parameters such as payload size, packet rate, and test duration.
+- [ ] Record sent packets, received packets, timestamps, and transferred bytes.
+- [ ] Calculate latency, packet-loss ratio, and throughput from collected measurements.
+- [ ] Add a Python service for processing and serving measurement results.
+- [ ] Define a documented API between the measurement component, backend, and dashboard.
+- [ ] Add CSV/JSON export and historical test comparisons.
+- [ ] Add automated tests and reproducible experiment configurations.
+
+See [Future API design](docs/FUTURE-API-DESIGN.md).
+
+## Documentation
+
+- [Architecture](docs/ARCHITECTURE.md)
+- [Metrics and methodology](docs/METRICS-AND-METHODOLOGY.md)
+- [Testing guide](docs/TESTING.md)
+- [Future API design](docs/FUTURE-API-DESIGN.md)
+- [Contributing](CONTRIBUTING.md)
+- [Changelog](CHANGELOG.md)
 
 ## Author
 
-Adarsh Arya
+**Adarsh Arya** · [@Adarsharya88](https://github.com/Adarsharya88)
 
-This project is intended for learning and demonstration purposes. The displayed values are illustrative and should not be interpreted as measured 5G network performance.
+## Disclaimer
+
+This repository is an educational software project. The current dashboard is a simulation for demonstrating a possible network-monitoring interface. It does not provide telecom-grade measurements, guarantee network quality, or represent the performance of any operator or 5G deployment.
